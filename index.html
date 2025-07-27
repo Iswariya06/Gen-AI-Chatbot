@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Image Recognition</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="main">
+    <h1>🔎 Image Recognition</h1>
+    <p class="subtitle">Upload a network device image and get instant analysis</p>
+
+    <div class="container">
+      <div class="card image-box">
+        <label for="upload" class="label">📤 Upload Image</label>
+        
+        <div class="upload-wrapper">
+          <label class="upload-btn">
+            Choose file
+            <input type="file" id="upload" accept="image/*" onchange="previewImage()" />
+          </label>
+          <button class="cancel-btn" onclick="cancelImage()" style="display: none;">❌ Cancel</button>
+        </div>
+      
+        <img id="preview" alt="Preview" />
+      
+        <div class="button-center">
+          <button onclick="analyzeImage()">Analyze</button>
+        </div>
+      </div>
+      
+
+      <div class="card result-box">
+        <h2>🧠 AI Result</h2>
+        <div id="result">Your analysis result will appear here.</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NetVision - Home</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(to right, #83a4d4, #b6fbff);
+      color: #000;
+      display: flex;
+      position: relative;
+    }
+
+    .user-bar {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-weight: bold;
+      color: white;
+      border: 2px solid white;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logout-btn {
+      padding: 5px 12px;
+      background-color: #ffffff;
+      color: #3a7bd5;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background-color: #3a7bd5;
+      color: white;
+    }
+
+    .left {
+      flex: 1;
+      padding: 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .tag {
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: bold;
+      color: #3a7bd5;
+      margin-bottom: 20px;
+      font-family: 'comic sans ms', sans-serif;
+    }
+
+    .heading {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .subheading {
+      font-size: 1.1rem;
+      color: #f0f0f0;
+      margin-bottom: 40px;
+      max-width: 500px;
+    }
+
+    .button-container {
+      display: flex;
+      gap: 20px;
+    }
+
+    .option {
+      text-decoration: none;
+      background-color: rgba(255, 255, 255, 0.2);
+      border: 2px solid white;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .option:hover {
+      background-color: white;
+      color: #3a7bd5;
+      transform: scale(1.05);
+    }
+
+    .right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .chat-preview {
+      background-color: white;
+      border-radius: 20px;
+      padding: 40px;
+      width: 400px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+      color: #333;
+    }
+
+    .chat-preview h3 {
+      font-size: 1.6rem;
+      margin: 0 0 15px 0;
+    }
+
+    .chat-preview p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    .chat-preview ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .chat-preview li {
+      margin: 12px 0;
+      font-size: 1rem;
+    }
+    
+    #userNameDisplay {
+  color: #6228e7; /* Bright yellow */
+  font-weight: bold;
+}
+
+    .chat-icon {
+      font-size: 1.2rem;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="user-bar" id="userBar">
+    <span id="userNameDisplay">Welcome!</span>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <div class="left">
+    <div class="tag">Welcome to NetVision</div>
+    <div class="heading">Advanced conversational AI and image recognition</div>
+    <div class="subheading">
+      Choose one of the tools to experience smart interactions with a chatbot or analyze images with AI recognition.
+    </div>
+    <div class="button-container">
+      <a href="chatbot/index.html" class="option">Chatbot</a>
+      <a href="img_rec/index.html" class="option">Image Recognition</a>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="chat-preview">
+      <h3>Hi, I am NetVision!</h3>
+      <p>Here are some things I can help you with:</p>
+      <ul>
+        <li><span class="chat-icon">🤖</span> Chat with the AI</li>
+        <li><span class="chat-icon">💬</span> Get answers to your questions</li>
+        <li><span class="chat-icon">🖼️</span> Analyze images with AI recognition</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const nameDisplay = document.getElementById('userNameDisplay');
+    const loggedInName = localStorage.getItem('loggedInName');
+
+    if (loggedInName && loggedInName.trim() !== "") {
+      nameDisplay.textContent = `Welcome, ${loggedInName}!`;
+    } else {
+      nameDisplay.textContent = "Welcome, Guest!";
+    }
+
+    function logout() {
+      localStorage.removeItem('loggedInUser');
+      localStorage.removeItem('loggedInName');
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+</html>

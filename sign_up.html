@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up - NetVision</title>
+  <style>
+    /* Same styles as before */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #83a4d4, #b6fbff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .signup-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+      max-width: 400px;
+      width: 100%;
+    }
+    h2 {
+      text-align: center;
+      color: #3a7bd5;
+      margin-bottom: 20px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 15px;
+      background-color: #3a7bd5;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .login-link {
+      text-align: center;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <h2>Create an Account</h2>
+    <form id="signupForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" required />
+
+      <label for="username">Username</label>
+      <input type="text" id="username" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" required />
+
+      <label for="password">Password (min 8 characters)</label>
+      <input type="password" id="password" required minlength="8" />
+
+      <button type="submit">Sign Up</button>
+    </form>
+    <div class="login-link">
+      <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (password.length < 8) {
+        alert("Password must be at least 8 characters long.");
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem('users')) || [];
+      const existing = users.find(user => user.username === username || user.email === email);
+      if (existing) {
+        alert("Username or Email already exists!");
+        return;
+      }
+
+      users.push({ name, username, email, password });
+      localStorage.setItem('users', JSON.stringify(users));
+
+      alert('Sign up successful! You can now log in.');
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>
